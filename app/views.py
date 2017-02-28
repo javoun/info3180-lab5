@@ -51,10 +51,12 @@ def login():
             flash("Successful Login")
             
             return redirect(url_for("secure-page")) # they should be redirected to a secure-page route instead
-    return render_template("login.html", form=form)
+        else:
+            flash("Password or Username incorrcet.", "danger")
+        return render_template("login.html", form=form)
 
 @app.route('/secure_page')
-@login_required(user)
+#@login_required()
 def secure_page():
     return render_template('secure-page.html')
     
